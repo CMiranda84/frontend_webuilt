@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import db_URL from "../Interceptor/myApi";
 import useAuth from "../context/useAuth";
+import Loader from "../components/Loader/Loader";
 // import axios from "axios";
 // const db = "http://localhost:5005/api"
 
@@ -60,29 +61,34 @@ function ProjectsDetailsPage() {
     };
   }
   if (!project) {
-    return "no project";
+    return <Loader/>
   }
   return (
-    <>
+    <div className="m-7">
       <div className="container mx-auto px-4 py-8">
         <div>
           <h1 className="text-3xl font-bold mb-4">{project.title}</h1>
-          <div className="flex items-center mb-4">
+          <div className="flex items-center mb-4 " >
             <img
               src={project.image}
               alt={`image of ${project.title}`}
-              className="w-32 h-32 rounded-lg shadow-md mr-4"
+              className="w-72 h-52 rounded-lg shadow-md mr-7 hover:scale-125"
             />
             <div>
               <p className="text-lg text-gray-700 mb-2">
                 {project.description}{" "}
               </p>
-              <p className="text-gray-600">{project.price}€ </p>
-              <p className="text-gray-600">{project.duration}day(s) </p>
+              <p className="text-gray-600">Budget: {project.price}€ </p>
+              <p className="text-gray-600">Day(s) to complete: {project.duration}day(s) </p>
+              <p className="text-gray-600">Company: {project.company} </p>
+              <Link to={`/user/${project.user}`}>
+              <p >Published by:  </p>
+              <h3 className=" text-blue-800 hover:text-blue-400 ">{project.company}</h3>
+              </Link>
             </div>
           </div>
           <Link to={`/projects/${project._id}/editProject`}>
-            <button>Edit Project</button>
+            <button className="bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">Edit  Project</button>
           </Link>
         </div>
       </div>
@@ -107,28 +113,13 @@ function ProjectsDetailsPage() {
           </button>
         </form>
       </>
-      {/* {isLoggedIn && (
-        <>
-          <form onSubmit={handleCommentSubmit}>
-            <textarea
-              name=""
-              id=""
-              cols="30"
-              rows="10"
-              value={essay}
-              onChange={(e) => setEssay(e.target.value)}
-            ></textarea>
-            <button>Send comment</button>
-          </form>
-        </>
-      )} */}
       {comments.length === 0 ? (
         <p>No comments yet</p>
       ) : (
         <>
           {comments.map((comment) => {
             // console.log(comment);
-            const canDelete =
+            const canComment =
               user && (comment.user._id === user._id || user.role === "worker");
             return (
               <div
@@ -160,7 +151,7 @@ function ProjectsDetailsPage() {
           })}
         </>
       )}
-    </>
+    </div>
   );
 }
 

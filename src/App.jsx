@@ -10,6 +10,8 @@ import UserProfilePage from "./Pages/UserProfilePage";
 import IsWorker from "./components/IsWorker";
 import IsLoggedOut from "./components/IsLoggedOut";
 import Navbar from "./components/Navbar";
+import AboutUspage from "./Pages/AboutUspage";
+import TalkToUs from "./Pages/TalkToUs";
 
 import "./index.css";
 
@@ -28,6 +30,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
         </Route>
         <Route path="/projects" element={<ProjectsPages />} />
+        <Route path="/about" element={<AboutUspage />} />
+        <Route path="/contacts" element={<TalkToUs />} />
         <Route path="/projects/:projectId" element={<ProjectsDetailsPage />} />
 
         <Route element={<IsWorker />}>
@@ -37,13 +41,13 @@ function App() {
             element={<ProjectEditPage />}
           />
         </Route>
-        <Route path="/userProfile/:userId" element={<UserProfilePage />} />
+        <Route path="/user/:userId" element={<UserProfilePage />} />
       </Routes>
-      <footer className="bg-blue-500 text-white py-4">
+      {/* <footer className="bg-gray-800 text-white py-4 fixed bottom-0 w-full">
         <div className="container mx-auto text-center">
-          <p>&copy; 2024 My Website. All rights reserved.</p>
+          <p>&copy; 2024 We Build. All rights reserved.</p>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }

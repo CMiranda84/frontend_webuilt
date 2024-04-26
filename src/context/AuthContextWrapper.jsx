@@ -42,7 +42,7 @@ function AuthContextWrapper({ children }) {
   const logout = () => {
     removeToken();
     setUser(null);
-    setIsLoading(false);
+    setIsLoggedIn(false);
   };
   return (
     <AuthContext.Provider

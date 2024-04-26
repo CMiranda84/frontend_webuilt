@@ -75,9 +75,9 @@ function ProjectEditPage() {
   };
 
   return (
-    <div>
+    <div className="m-7">
       <h1 className="text-3xl font-bold mb-4">Edit this Project</h1>
-      <div className="editionContainer">
+      <div className="editionContainer space-x-3">
         <form className="editionBody" onSubmit={handleEditProject}>
           <div className="mb-4">
             <label className="block mb-2">Title</label>
@@ -138,7 +138,7 @@ function ProjectEditPage() {
           </div>
         </form>
         <img
-          className="editImage"
+          className="editImage w-96"
           src={editProject.image}
           alt={`image of ${editProject.title}`}
         />
@@ -149,7 +149,13 @@ function ProjectEditPage() {
         >
           Save changes
         </button>
-        <button  type="button" onClick={()=> setShowDeleteConfirmation(true)} className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4 transition duration-150 ease-in-out">Delete</button>
+        <button
+          type="button"
+          onClick={() => setShowDeleteConfirmation(true)}
+          className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-4 transition duration-150 ease-in-out"
+        >
+          Delete
+        </button>
         {showDeleteConfirmation && (
           <div className="absolute top-0 left-0 w-72 h-48 bg-white flex flex-col justify-center items-center border border-gray-300 rounded-md p-4 shadow-md">
             <p className="mb-4">

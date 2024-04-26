@@ -2,6 +2,7 @@ import React from "react";
 import db_URL from "../Interceptor/myApi";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader/Loader";
 // import axios from 'axios';
 // const db_URL = "http://localhost:5005/api";
 
@@ -37,7 +38,7 @@ function ProjectsPages() {
   }
 
   if (!projects) {
-    return "no projects to display";
+    return <Loader/>
   }
 
   return (
@@ -53,19 +54,19 @@ function ProjectsPages() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => {
-          return (
-            <div key={project._id} className="project-card bg-white rounded-lg shadow-md">
+          return (<Link to={`/projects/${project._id}`} className="hover:text-blue-600 text-xl ">
+            <div key={project._id} className="project-card bg-white rounded-lg text-center shadow-md hover:scale-110">
               <h2>
-                <Link to={`/projects/${project._id}`} className="hover:text-blue-600">{project.title}</Link>
+                {project.title}
               </h2>
               <div className="img-wrapper">
                 <img
                   src={project.image}
                   alt={`image of ${project.title} project`}
-                  className="w-full h-auto rounded-t-lg"
+                  className="w-full h-auto rounded-t-lg "
                 />
               </div>
-            </div>
+            </div></Link>
           );
         })}
       </div>

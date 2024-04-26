@@ -1,12 +1,13 @@
 import React from "react"
 import useAuth from "../context/useAuth"
 import { Navigate, Outlet } from "react-router-dom"
+import Loader from "./Loader/Loader"
 
 function IsLoggedOut() {
 	const { isLoggedIn, isLoading } = useAuth()
 
 	if (isLoading) {
-		return <p>Loading :)</p>
+		return <Loader/>
 	}
 
 	if (isLoggedIn) {
